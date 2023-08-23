@@ -23,10 +23,10 @@ public class Obra {
 
     private String description;
 
-    @DateTimeFormat(pattern = "dd-mm-yyy")
+    @DateTimeFormat(pattern = "dd-mm-yyyy")
     private LocalDate publicationDate;
 
-    @DateTimeFormat(pattern = "dd-mm-yyy")
+    @DateTimeFormat(pattern = "dd-mm-yyyy")
     private LocalDate exposureDate;
 
     @ManyToMany

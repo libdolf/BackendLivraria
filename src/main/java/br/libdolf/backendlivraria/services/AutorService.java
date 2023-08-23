@@ -18,12 +18,12 @@ public class AutorService {
 
     public void save(RequestAutorDTO request) {
         Autor autor = Autor.builder()
-                .name(request.name())
-                .gender(request.gender())
-                .email(request.email())
-                .country(request.country())
-                .cpf(request.cpf())
-                .birthDate(request.birthDate())
+                .name(request.getName())
+                .gender(request.getGender())
+                .email(request.getEmail())
+                .country(request.getCountry())
+                .cpf(request.getCpf())
+                .birthDate(request.getBirthDate())
                 .build();
 
         repository.save(autor);
@@ -31,12 +31,12 @@ public class AutorService {
 
     public void update(Long id, RequestAutorDTO request) {
        Autor autor = repository.findById(id).orElseThrow();
-       autor.setName(request.name());
-       autor.setGender(request.gender());
-       autor.setEmail(request.email());
-       autor.setCountry(request.country());
-       autor.setCpf(request.cpf());
-       autor.setBirthDate(request.birthDate());
+       autor.setName(request.getName());
+       autor.setGender(request.getGender());
+       autor.setEmail(request.getEmail());
+       autor.setCountry(request.getCountry());
+       autor.setCpf(request.getCpf());
+       autor.setBirthDate(request.getBirthDate());
 
        repository.save(autor);
     }

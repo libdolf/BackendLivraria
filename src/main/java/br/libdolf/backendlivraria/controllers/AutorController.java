@@ -4,6 +4,7 @@ import br.libdolf.backendlivraria.DTOs.RequestAutorDTO;
 import br.libdolf.backendlivraria.DTOs.ResponseAutorDTO;
 import br.libdolf.backendlivraria.entities.Autor;
 import br.libdolf.backendlivraria.services.AutorService;
+import jakarta.validation.Valid;
 import lombok.AllArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -17,12 +18,12 @@ public class AutorController {
     private AutorService service;
 
     @PostMapping("/save")
-    public ResponseEntity saveNewAutor(@RequestBody RequestAutorDTO request){
+    public ResponseEntity saveNewAutor(@RequestBody @Valid RequestAutorDTO request){
         service.save(request);
         return ResponseEntity.ok().build();
     }
     @PutMapping(value = "/update/{id}")
-    public ResponseEntity updateAutor(@PathVariable Long id, RequestAutorDTO request){
+    public ResponseEntity updateAutor(@PathVariable Long id, @Valid RequestAutorDTO request){
         service.update(id, request);
         return ResponseEntity.ok().build();
     }
