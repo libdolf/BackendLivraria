@@ -1,6 +1,7 @@
 package br.libdolf.backendlivraria.controllers;
 
 import br.libdolf.backendlivraria.DTOs.RequestAutorDTO;
+import br.libdolf.backendlivraria.DTOs.ResponseAutorDTO;
 import br.libdolf.backendlivraria.entities.Autor;
 import br.libdolf.backendlivraria.services.AutorService;
 import lombok.AllArgsConstructor;
@@ -11,6 +12,7 @@ import java.util.List;
 
 @RestController
 @AllArgsConstructor
+@RequestMapping("/autor")
 public class AutorController {
     private AutorService service;
 
@@ -24,11 +26,11 @@ public class AutorController {
         service.update(id, request);
         return ResponseEntity.ok().build();
     }
-    @GetMapping(value = "/author/{obraname}")
-    public ResponseEntity<List<Autor>> getByObraName(@PathVariable String obraname){
+    @GetMapping(value = "/{obraname}")
+    public ResponseEntity<List<ResponseAutorDTO>> getByObraName(@PathVariable String obraname){
         return ResponseEntity.ok(service.getAutorsByObraTitle(obraname));
     }
-    @GetMapping(value = "/authors/all")
+    @GetMapping(value = "/all")
     public ResponseEntity<List<Autor>> listAll(){
         return ResponseEntity.ok(service.getAll());
     }

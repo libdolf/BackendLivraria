@@ -1,5 +1,6 @@
 package br.libdolf.backendlivraria.controllers;
 
+import br.libdolf.backendlivraria.DTOs.RequestObraDTO;
 import br.libdolf.backendlivraria.DTOs.ResponseObraDTO;
 import br.libdolf.backendlivraria.entities.Obra;
 import br.libdolf.backendlivraria.services.ObraService;
@@ -7,6 +8,7 @@ import lombok.AllArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.time.LocalDate;
 import java.util.List;
 
 @RestController
@@ -23,18 +25,18 @@ public class ObraController {
         return ResponseEntity.ok(service.getAll());
     }
     @PostMapping(value = "/save")
-    public ResponseEntity save(@RequestBody RequestObra requestBookDTO){
-        service.save(requestBookDTO);
-        return ResponseEntity.ok(requestBookDTO);
+    public ResponseEntity save(@RequestBody RequestObraDTO request){
+        service.save(request);
+        return ResponseEntity.ok().build();
     }
     @PutMapping(value = "/update/{id}")
-    public ResponseEntity update(@PathVariable Long id, BookDTO bookDTO){
-        service.update(id, bookDTO);
-        return ResponseEntity.ok(HttpStatus.OK);
+    public ResponseEntity update(@PathVariable Long id,RequestObraDTO request) {
+        service.update(id, request);
+        return ResponseEntity.ok().build();
     }
     @DeleteMapping(value = "/delete/{id}")
     public ResponseEntity delete(@PathVariable Long id){
         service.delete(id);
-        return ResponseEntity.ok(HttpStatus.OK);
+        return ResponseEntity.ok().build();
     }
 }

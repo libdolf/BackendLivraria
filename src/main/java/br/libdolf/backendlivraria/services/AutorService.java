@@ -1,11 +1,13 @@
 package br.libdolf.backendlivraria.services;
 
 import br.libdolf.backendlivraria.DTOs.RequestAutorDTO;
+import br.libdolf.backendlivraria.DTOs.ResponseAutorDTO;
 import br.libdolf.backendlivraria.entities.Autor;
 import br.libdolf.backendlivraria.repositories.AutorRepository;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -39,8 +41,14 @@ public class AutorService {
        repository.save(autor);
     }
 
-    public List<Autor> getAutorsByObraTitle(String title) {
-        return repository.findByObrasTitleContaining(title);
+    public List<ResponseAutorDTO> getAutorsByObraTitle(String title) {
+        List<Autor> autores = repository.findByObrasTitleContaining(title);
+        List<ResponseAutorDTO> response = new ArrayList<>();
+        for (Autor autor: autores){
+            ResponseAutorDTO autorDTO = new ResponseAutorDTO(autor);
+            response.add(autorDTO);
+        }
+        return response;
     }
 
     public List<Autor> getAll() {
@@ -50,5 +58,9 @@ public class AutorService {
     public void delete(Long id) {
         Autor autor = repository.findById(id).orElseThrow();
         repository.delete(autor);
+    }
+
+    public Autor getById(Long id){
+        return repository.findById(id).orElseThrow();
     }
 }
