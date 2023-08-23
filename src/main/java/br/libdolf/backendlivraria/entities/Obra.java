@@ -14,32 +14,26 @@ import java.util.Set;
 @NoArgsConstructor
 @EqualsAndHashCode
 @Builder
-public class Autor {
+public class Obra {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(nullable = false)
-    private String name;
+    private String title;
 
-    @Enumerated(EnumType.STRING)
-    private Gender gender;
-
-    private String email;
+    private String description;
 
     @DateTimeFormat(pattern = "dd-mm-yyy")
-    private LocalDate birthDate;
+    private LocalDate publicationDate;
 
-    @Enumerated(EnumType.STRING)
-    private Country country;
+    @DateTimeFormat(pattern = "dd-mm-yyy")
+    private LocalDate exposureDate;
 
-    private String cpf;
-
-    @ManyToMany(mappedBy = "autor")
-    private Set<Obra> obras = new HashSet<>();
-
-    public enum Gender{
-        MALE, FEMALE, OTHER
-    }
-
+    @ManyToMany
+    @JoinTable(
+            name = "obra_autor",
+            joinColumns = @JoinColumn(name = "obra_id"),
+            inverseJoinColumns = @JoinColumn(name = "autor_id")
+    )
+    private Set<Autor> autores = new HashSet<>();
 }
