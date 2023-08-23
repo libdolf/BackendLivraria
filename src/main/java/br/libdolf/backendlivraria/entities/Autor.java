@@ -1,5 +1,7 @@
 package br.libdolf.backendlivraria.entities;
 
+import br.libdolf.backendlivraria.utils.Country;
+
 import jakarta.persistence.*;
 import lombok.*;
 import org.springframework.format.annotation.DateTimeFormat;
