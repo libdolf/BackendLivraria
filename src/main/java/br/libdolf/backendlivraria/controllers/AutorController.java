@@ -1,8 +1,12 @@
 package br.libdolf.backendlivraria.controllers;
 
+import br.libdolf.backendlivraria.entities.Autor;
+import br.libdolf.backendlivraria.services.AutorService;
 import lombok.AllArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @RestController
 @AllArgsConstructor
