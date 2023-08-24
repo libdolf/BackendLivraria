@@ -2,6 +2,7 @@ package br.libdolf.backendlivraria.validations;
 
 import br.com.caelum.stella.validation.CPFValidator;
 import br.libdolf.backendlivraria.DTOs.RequestAutorDTO;
+import br.libdolf.backendlivraria.exceptions.BadRequestException;
 import br.libdolf.backendlivraria.utils.Country;
 import jakarta.validation.ConstraintValidator;
 import jakarta.validation.ConstraintValidatorContext;
@@ -35,7 +36,7 @@ public class CountryMatchesCPFValidator implements ConstraintValidator<CountryMa
         try{ cpfValidator.assertValid(cpf);
             return true;
         }catch(Exception e){
-            throw new ;
+            throw new BadRequestException("CPF inválido");
         }
     }
 }

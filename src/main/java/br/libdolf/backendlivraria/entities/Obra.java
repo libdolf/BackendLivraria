@@ -35,5 +35,6 @@ public class Obra {
             joinColumns = @JoinColumn(name = "obra_id"),
             inverseJoinColumns = @JoinColumn(name = "autor_id")
     )
+    @Column(nullable = false)
     private Set<Autor> autores = new HashSet<>();
 }

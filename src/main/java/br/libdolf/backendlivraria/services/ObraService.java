@@ -4,6 +4,7 @@ import br.libdolf.backendlivraria.DTOs.RequestObraDTO;
 import br.libdolf.backendlivraria.DTOs.ResponseObraDTO;
 import br.libdolf.backendlivraria.entities.Autor;
 import br.libdolf.backendlivraria.entities.Obra;
+import br.libdolf.backendlivraria.exceptions.NotFoundException;
 import br.libdolf.backendlivraria.repositories.ObraRepository;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -48,7 +49,7 @@ public class ObraService {
             autorSet.add(autor);
         }
 
-        Obra obra = repository.findById(id).orElseThrow();
+        Obra obra = repository.findById(id).orElseThrow(()-> new NotFoundException("Obra não encontrada"));
         obra.setTitle(request.getTitle());
         obra.setDescription(request.getDescription());
         obra.setExposureDate(request.getExposureDate());
@@ -59,7 +60,7 @@ public class ObraService {
     }
 
     public void delete(Long id) {
-        Obra obra = repository.findById(id).orElseThrow();
+        Obra obra = repository.findById(id).orElseThrow(()-> new NotFoundException("Obra não encontrada"));
         repository.delete(obra);
     }
 }

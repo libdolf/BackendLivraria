@@ -3,6 +3,7 @@ package br.libdolf.backendlivraria.services;
 import br.libdolf.backendlivraria.DTOs.RequestAutorDTO;
 import br.libdolf.backendlivraria.DTOs.ResponseAutorDTO;
 import br.libdolf.backendlivraria.entities.Autor;
+import br.libdolf.backendlivraria.exceptions.NotFoundException;
 import br.libdolf.backendlivraria.repositories.AutorRepository;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -30,7 +31,7 @@ public class AutorService {
     }
 
     public void update(Long id, RequestAutorDTO request) {
-       Autor autor = repository.findById(id).orElseThrow();
+       Autor autor = repository.findById(id).orElseThrow(()-> new NotFoundException("Autor não encontrado"));
        autor.setName(request.getName());
        autor.setGender(request.getGender());
        autor.setEmail(request.getEmail());
@@ -56,11 +57,11 @@ public class AutorService {
     }
 
     public void delete(Long id) {
-        Autor autor = repository.findById(id).orElseThrow();
+        Autor autor = repository.findById(id).orElseThrow(()-> new NotFoundException("Autor não encontrado"));
         repository.delete(autor);
     }
 
     public Autor getById(Long id){
-        return repository.findById(id).orElseThrow();
+        return repository.findById(id).orElseThrow(()-> new NotFoundException("Autor não encontrado"));
     }
 }

@@ -8,10 +8,10 @@ import org.springframework.validation.beanvalidation.LocalValidatorFactoryBean;
 
 @Configuration
 public class Config {
-    @Bean
-    public LocalValidatorFactoryBean validator() {
-        LocalValidatorFactoryBean factoryBean = new LocalValidatorFactoryBean();
-        factoryBean.getValidationPropertyMap().put("javax.persistence.validation.mode", "none");
-        return factoryBean;
-    }
+//    @Bean
+//    public LocalValidatorFactoryBean validator() {
+//        LocalValidatorFactoryBean factoryBean = new LocalValidatorFactoryBean();
+//        factoryBean.getValidationPropertyMap().put("javax.persistence.validation.mode", "none");
+//        return factoryBean;
+//    }
 }

@@ -4,6 +4,7 @@ import br.libdolf.backendlivraria.DTOs.RequestObraDTO;
 import br.libdolf.backendlivraria.DTOs.ResponseObraDTO;
 import br.libdolf.backendlivraria.entities.Obra;
 import br.libdolf.backendlivraria.services.ObraService;
+import jakarta.validation.Valid;
 import lombok.AllArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -25,12 +26,12 @@ public class ObraController {
         return ResponseEntity.ok(service.getAll());
     }
     @PostMapping(value = "/save")
-    public ResponseEntity save(@RequestBody RequestObraDTO request){
+    public ResponseEntity save(@RequestBody @Valid RequestObraDTO request){
         service.save(request);
         return ResponseEntity.ok().build();
     }
     @PutMapping(value = "/update/{id}")
-    public ResponseEntity update(@PathVariable Long id,RequestObraDTO request) {
+    public ResponseEntity update(@PathVariable Long id,@Valid RequestObraDTO request) {
         service.update(id, request);
         return ResponseEntity.ok().build();
     }

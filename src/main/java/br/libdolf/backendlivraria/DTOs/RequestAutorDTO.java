@@ -5,6 +5,7 @@ import br.libdolf.backendlivraria.utils.Country;
 import br.libdolf.backendlivraria.validations.CountryMatchesCPF;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import jakarta.validation.constraints.Email;
+import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotEmpty;
 import jakarta.validation.constraints.NotNull;
 import lombok.Data;
@@ -15,8 +16,7 @@ import java.time.LocalDate;
 @CountryMatchesCPF
 @Data
 public class RequestAutorDTO{
-        @NotEmpty(message = "O nome do autor não pode ser vazio")
-        @NotNull(message = "O nome do autor não pode ser nulo")
+        @NotBlank(message = "O nome do autor não pode ser vazio ou nulo")
         private String name;
         private Gender gender;
         @Email
